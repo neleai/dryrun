@@ -26,7 +26,7 @@ typedef struct
 
 # else
 #  define REPLAY_ITERATION(rec) \
-  if (rec.n < 10) \
+  if (rec.n < 1000000) \
     { \
       char *start = tmp + (((unsigned long) rec.s) % (1 << 20)); \
       if (rec.c == 1) \
