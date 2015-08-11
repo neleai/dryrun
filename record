@@ -1,0 +1,7 @@
+SO=""
+for I in bin/*.so; do
+  SO=$SO:`readlink -f $I`
+done
+echo $SO
+LD_PRELOAD=$SO bash
+  
