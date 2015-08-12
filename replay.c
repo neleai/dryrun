@@ -79,18 +79,16 @@ main (int argc, char **argv)
           fread (buf, h->size * sizeof (rec), 1, fi);
           if (!unique || (h->size > 50 && uniq(h->binary_name)))
             {
-#ifdef BENCH
-	      if (unique)
-                clock_gettime (CLOCK_PROCESS_CPUTIME_ID, &start);
-#endif
 #ifdef SUMMARY
               if (h->size > 50 && !total)
 #endif
               printf ("\n\nreplaying %s", h->binary_name);
 
+
 #ifdef BENCH
-              int j;
-              for (j = 0; j < BENCH; j++)
+	      if (unique)
+                clock_gettime (CLOCK_PROCESS_CPUTIME_ID, &start);
+	      do
 	        {
 #endif
                   total_size += h->size;
@@ -113,12 +111,13 @@ main (int argc, char **argv)
 	            }
 #ifdef BENCH
     	         }
+               while (unique && total_size < 1000000);
 
-  if (unique)
-    {
-  clock_gettime (CLOCK_PROCESS_CPUTIME_ID, &end);
-  printf (" took %lli\n", end.tv_nsec - start.tv_nsec + 1000000000L * (end.tv_sec - start.tv_sec));
-    }
+             if (unique)
+               {
+                 clock_gettime (CLOCK_PROCESS_CPUTIME_ID, &end);
+                 printf (" took %lli\n", end.tv_nsec - start.tv_nsec + 1000000000L * (end.tv_sec - start.tv_sec));
+               }
    
 #endif
             }

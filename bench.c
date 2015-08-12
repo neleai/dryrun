@@ -1,2 +1,2 @@
-#define BENCH 20
+#define BENCH
 #include "replay.c"
