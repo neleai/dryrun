@@ -41,6 +41,8 @@ typedef struct
 #ifdef WANT_SUMMARY
 #define USES_CAPA
 COUNTER(100,r.success,"\nsuceed: ");
+COUNTER (200, r.c == '\0', "c == '\\0':");
+
 #include "summary_common.h"
 #endif
 

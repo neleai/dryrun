@@ -40,6 +40,8 @@ typedef struct
 #ifdef WANT_SUMMARY
 #define NO_SUCCESS
 #include "summary_common.h"
+COUNTER (200, r.c == '\0', "c == '\\0':");
+
 #endif
 
 #ifdef WANT_RECORD

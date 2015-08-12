@@ -24,6 +24,7 @@ typedef struct
 
 #include "summary_common.h"
 
+
 # else
 #  define REPLAY_ITERATION(rec) \
   if (rec.n < 1000000) \
@@ -42,6 +43,7 @@ typedef struct
 #ifdef WANT_SUMMARY
 #define NO_SUCCESS
 #include "summary_common.h"
+COUNTER(301, r.c == '\0', "c == '\\0':");
 #endif
 
 

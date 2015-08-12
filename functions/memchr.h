@@ -20,9 +20,6 @@ typedef struct
 
 # ifdef SHOW
 #  define REPLAY_ITERATION(rec) printf ("align %8i capa %8i capacity %8i character %c(%3i) found: %i latency %i\n", rec.s % 64, rec.n, rec.capa, isprint (rec.c) ? rec.c : ' ', rec.c, rec.success, rec.cache_latency)
-# elif defined SUMMARY
-#include "summary_common.h"
-
 
 # else
 #  define REPLAY_ITERATION(rec) \
@@ -42,6 +39,7 @@ typedef struct
 #ifdef WANT_SUMMARY
 #define USES_CAPA
 COUNTER(100,r.success,"\nsuceed: ");
+COUNTER (300, r.c == '\0', "c == '\\0':");
 #include "summary_common.h"
 #endif
 

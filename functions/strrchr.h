@@ -37,7 +37,7 @@ typedef struct
         if (rec.last_matches & (1ULL << ii)) \
           start[rec.n - ii] = rec.c; \
       start[rec.n] = 0; \
-      ret += (uintptr_t) strchr (start, rec.c); \
+      ret += (uintptr_t) strrchr (start, rec.c); \
       start[rec.n] = 1; \
       for (ii=0;ii<64;ii++)\
         if (rec.last_matches & (1ULL << ii)) \
@@ -50,6 +50,7 @@ typedef struct
 #ifdef WANT_SUMMARY
 #define NO_SUCCESS
 #include "summary_common.h"
+COUNTER (200, r.c == '\0', "c == '\\0':");
 #endif
 
 #ifdef  SUMMARY_SETUP
@@ -61,7 +62,7 @@ typedef struct
     matches++;
 #endif
 #ifdef SUMMARY_PRINT
-  printf ("average c matches %7.3lf\n", matches /total_size);
+  printf ("average c matches %7.3lf\n", matches / total_size);
 #endif
 
 
