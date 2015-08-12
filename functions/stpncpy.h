@@ -37,7 +37,7 @@ typedef struct
       char *start1 = tmp + (((unsigned long) rec.s) % (1 << 20)); \
       char *start2 = tmp2 + (((unsigned long) rec.s2) % (1 << 20)); \
       start2[rec.n] = 0; \
-      ret += (uintptr_t) strncpy (start1, start2, rec.capa); \
+      ret += (uintptr_t) stpncpy (start1, start2, rec.capa); \
       start2[rec.n] = 1; \
     }
 # endif
@@ -53,9 +53,9 @@ COUNTER(200, r.n == r.capa, "n == capa :");
 
 
 #ifdef WANT_RECORD
-#undef strncpy
+#undef stpncpy
 char *
-strncpy (char *_dest, const char *_src, size_t capa)
+stpncpy (char *_dest, const char *_src, size_t capa)
 {
   unsigned char *dest = (unsigned char *) _dest;
   unsigned char *src = (unsigned char *) _src;
